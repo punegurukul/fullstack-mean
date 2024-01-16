@@ -2,12 +2,14 @@ import express, { Express, Request, Response , Application } from 'express';
 import dotenv from 'dotenv';
 import { PersonController } from './controller/PersonController';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 //For env File 
 dotenv.config();
 
 const app: Application = express();
 app.use(express.json());
+app.use(cors());
 const port = process.env.PORT || 8000;
 
 const personCtr = new PersonController();

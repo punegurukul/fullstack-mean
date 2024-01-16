@@ -16,10 +16,12 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const PersonController_1 = require("./controller/PersonController");
 const mongoose_1 = __importDefault(require("mongoose"));
+const cors_1 = __importDefault(require("cors"));
 //For env File 
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 const port = process.env.PORT || 8000;
 const personCtr = new PersonController_1.PersonController();
 app.get('/', (req, res) => {
