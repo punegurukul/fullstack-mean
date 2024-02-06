@@ -19,6 +19,12 @@ export const routes: Routes = [
         canActivate: [RouteGuardService]
     },
     {
+        path: 'new-course/:id',
+        component: NewCourseComponent,
+        title: 'Edit Course',
+        canActivate: [RouteGuardService]
+    },
+    {
         path: '',
         component: LoginComponent,
         title: 'Login',

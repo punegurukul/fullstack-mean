@@ -16,13 +16,18 @@ export class CourseService {
   async findAll(): Promise<Course[]> {
     return this.courseModel.find().exec();
   }
+
+  async findOne(id: string): Promise<Course> {
+    return this.courseModel.findById(id).exec();
+  }
   
   async delete(id: string): Promise<any> {
-    return this.courseModel.findByIdAndDelete(id);
+    return this.courseModel.findByIdAndDelete(id).exec();
   }
 
-  async update(id: string, courseDto: CreateCourseDto ) {    
-    await this.courseModel.updateOne({_id: id}, courseDto);        
+  async update(id: string, courseDto: CreateCourseDto ) {  
+    console.log("Update", id, courseDto);  
+    return await this.courseModel.updateOne({_id: id}, courseDto);        
   }
   
 }

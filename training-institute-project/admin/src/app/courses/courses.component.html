@@ -25,8 +25,9 @@
           <span *ngIf="!c.show" class="badge text-bg-danger">Inactive</span>
         </td>
         <td>
-          <button type="button" class="btn btn-outline-danger btn-sm">Delete</button> &nbsp;
-          <button type="button" class="btn btn-outline-success btn-sm">{{c.show ? 'Hide': 'Show'}}</button>
+          <button type="button" (click)="deleteCourse(c._id)" class="btn btn-outline-danger btn-sm">Delete</button> &nbsp;
+          <button type="button" (click)="routeToEdit(c._id)" class="btn btn-outline-primary btn-sm">Edit</button> &nbsp;
+          <button type="button" (click)="changeStatus(c)" class="btn btn-outline-success btn-sm">{{c.show ? 'Hide': 'Show'}}</button>
         </td>
       </tr>
     </tbody>

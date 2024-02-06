@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { CreateCourseDto } from 'src/dto/course';
 import { Course } from 'src/schemas/course.schema';
 import { CourseService } from './course.service';
@@ -12,6 +12,11 @@ export class CourseController {
         return await this.service.findAll();
     }
 
+    @Get('/:id')
+    async getOne(@Param() param): Promise<Course> {
+        return await this.service.findOne(param.id);
+    }
+
     @UseGuards(AuthGuard)
     @Post()
     async post(@Body() course: CreateCourseDto): Promise<Course> {
@@ -20,8 +25,13 @@ export class CourseController {
 
     @UseGuards(AuthGuard)
     @Delete('/:id')
-    async delete(@Param() id: string ): Promise<Course> {
-        console.log("ID", id);
-        return await this.service.delete(id);
+    async delete(@Param() param): Promise<Course> {
+        return await this.service.delete(param.id);
+    }
+
+    @UseGuards(AuthGuard)
+    @Put('/:id')
+    async update(@Param() param, @Body() course: CreateCourseDto) {
+        return await this.service.update(param.id, course);
     }
 }
